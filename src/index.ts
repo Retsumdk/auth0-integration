@@ -73,7 +73,7 @@ export class Auth0Client {
         Authorization: `Bearer ${await this.getManagementToken()}`,
       },
     });
-    return response.json();
+    return (await response.json()) as Record<string, unknown>;
   }
 
   private async getManagementToken(): Promise<string> {
@@ -87,7 +87,7 @@ export class Auth0Client {
         audience: `https://${this.config.domain}/api/v2/`,
       }),
     });
-    const data = await response.json();
+    const data = (await response.json()) as { access_token: string };
     return data.access_token;
   }
 
@@ -100,8 +100,8 @@ export class Auth0Client {
         },
       }
     );
-    const roles = await response.json();
-    return roles.map((r: { name: string }) => r.name);
+    const roles = (await response.json()) as Array<{ name: string }>;
+    return roles.map((r) => r.name);
   }
 }
 
