@@ -12,10 +12,19 @@ TypeScript SDK for integrating Auth0 into Node.js applications with role-based a
 
 ## Installation
 
+The package is not published to the npm registry yet, so install it straight from GitHub:
+
 ```bash
-npm install auth0-integration
-# or
-bun add auth0-integration
+npm install github:Retsumdk/auth0-integration
+```
+
+The repository's `prepare` script compiles the TypeScript during install, so there is no separate build step.
+
+With Bun, a git dependency's install scripts are blocked by default, so trust the package once after adding it:
+
+```bash
+bun add github:Retsumdk/auth0-integration
+bun pm trust auth0-integration
 ```
 
 ## Configuration
